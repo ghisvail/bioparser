@@ -102,6 +102,8 @@ if (bioparser_install)
 endif ()
 
 if (bioparser_build_tests)
+  enable_testing()
+
   set(BIOPARSER_TEST_DATA "${PROJECT_SOURCE_DIR}/test/data/")
   configure_file(test/bioparser_test_config.h.in bioparser_test_config.h)
 
@@ -120,4 +122,6 @@ if (bioparser_build_tests)
 
   target_include_directories(bioparser_test PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>)
+
+  add_test(NAME bioparser-test COMMAND bioparser_test)
 endif ()
